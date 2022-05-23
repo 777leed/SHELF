@@ -1,31 +1,35 @@
 package com.example.stockio;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class login_s extends AppCompatActivity {
-
-    private EditText etEmail, etPassword;
-    private String email, password;
-    private String URL = "http://10.0.2.2/login/login.php";
+    private EditText Email;
+    private EditText Password;
+    private TextView Login;
+    private TextView passwordreset;
+    private EditText passwordresetemail;
+    private ProgressBar progressBar;
+    private FirebaseAuth auth;
+    private ProgressDialog processDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,51 +37,83 @@ public class login_s extends AppCompatActivity {
         setContentView(R.layout.login);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-        email = password = "";
-        etEmail = findViewById(R.id.email_login);
-        etPassword = findViewById(R.id.password_login);
+        getWindow().setStatusBarColor(ContextCompat.getColor(login_s.this,R.color.lightblue));
+
+        Email = (EditText) findViewById(R.id.email_login);
+        Password = (EditText) findViewById(R.id.password_login);
+        Login = (TextView) findViewById(R.id.continue_login);
+
+        passwordreset = findViewById(R.id.fpass);
+        passwordresetemail = findViewById(R.id.email_login);
+        progressBar = (ProgressBar) findViewById(R.id.progressbars);
+        progressBar.setVisibility(View.GONE);
+        auth = FirebaseAuth.getInstance();
+        processDialog = new ProgressDialog(this);
+
+
+
+        Login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                validate(Email.getText().toString(), Password.getText().toString());
+            }
+
+        });
+
+        passwordreset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetpasword();
+            }
+        });
     }
 
-    public void login(View view) {
-        email = etEmail.getText().toString().trim();
-        password = etPassword.getText().toString().trim();
-        if(!email.equals("") && !password.equals("")){
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    Log.d("res", response);
-                    if (response.equals("success")) {
-                        Intent intent = new Intent(login_s.this, Success.class);
-                        startActivity(intent);
-                        finish();
-                    } else if (response.equals("failure")) {
-                        Toast.makeText(login_s.this, "Invalid Login Id/Password", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(login_s.this, error.toString().trim(), Toast.LENGTH_SHORT).show();
-                }
-            }){
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String, String> data = new HashMap<>();
-                    data.put("email", email);
-                    data.put("password", password);
-                    return data;
-                }
-            };
-            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-            requestQueue.add(stringRequest);
-        }else{
-            Toast.makeText(this, "Fields can not be empty!", Toast.LENGTH_SHORT).show();
+    public void resetpasword(){
+        final String resetemail = passwordresetemail.getText().toString();
+
+        if (resetemail.isEmpty()) {
+            passwordresetemail.setError("It's empty");
+            passwordresetemail.requestFocus();
+            return;
         }
+        progressBar.setVisibility(View.VISIBLE);
+        auth.sendPasswordResetEmail(resetemail)
+
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(login_s.this, "We have sent you instructions to reset your password!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(login_s.this, "Failed to send reset email!", Toast.LENGTH_SHORT).show();
+                        }
+
+                        progressBar.setVisibility(View.GONE);
+                    }
+                });
     }
 
-    public void register(View view) {
-        Intent intent = new Intent(this, register.class);
-        startActivity(intent);
-        finish();
+
+
+
+    public void validate(String userEmail, String userPassword){
+
+        processDialog.setMessage("................Please Wait.............");
+        processDialog.show();
+
+        auth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    processDialog.dismiss();
+                    Toast.makeText(login_s.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(login_s.this, Dashboard.class));
+                }
+                else{
+                    Toast.makeText(login_s.this,"Login Failed", Toast.LENGTH_SHORT).show();
+                    processDialog.dismiss();
+                }
+            }
+        });
     }
 }

@@ -8,8 +8,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
+public class MainActivity extends AppCompatActivity {
+    private FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,7 +20,17 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
         getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this,R.color.lightblue));
+        auth = FirebaseAuth.getInstance();
+
+        FirebaseUser user = auth.getCurrentUser();
+
+        if(user != null){
+            finish();
+            startActivity(new Intent(this, Dashboard.class));
+        }
+
     }
+
     public void gotologin(View view)
             {
                 Intent intent = new Intent(this, login_s.class);

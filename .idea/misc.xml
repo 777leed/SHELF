@@ -3,13 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/hp/Stockio/app/src/main/res/drawable-v24/circular_blue_solid.xml" value="0.1945" />
         <entry key="..\:/Users/hp/Stockio/app/src/main/res/drawable-v24/circular_orange_solid.xml" value="0.1725" />
         <entry key="..\:/Users/hp/Stockio/app/src/main/res/drawable-v24/my_background_drawable.xml" value="0.1725" />
+        <entry key="..\:/Users/hp/Stockio/app/src/main/res/drawable/bg.xml" value="0.1945" />
+        <entry key="..\:/Users/hp/Stockio/app/src/main/res/drawable/bills_img_background.xml" value="0.1" />
         <entry key="..\:/Users/hp/Stockio/app/src/main/res/drawable/clrbackbtn.xml" value="0.1725" />
+        <entry key="..\:/Users/hp/Stockio/app/src/main/res/layout/activity_dashboard.xml" value="0.25" />
         <entry key="..\:/Users/hp/Stockio/app/src/main/res/layout/activity_main.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/hp/Stockio/app/src/main/res/layout/login.xml" value="0.25" />
         <entry key="..\:/Users/hp/Stockio/app/src/main/res/layout/signup.xml" value="0.25" />
         <entry key="..\:/Users/hp/Stockio/app/src/main/res/layout/success.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/hp/stockio/app/src/main/res/layout/activity_dashboard.xml" value="0.25" />
+        <entry key="..\:/Users/hp/stockio/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/hp/stockio/app/src/main/res/layout/login.xml" value="0.33" />
+        <entry key="..\:/Users/hp/stockio/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.171" />
       </map>
     </option>
   </component>
