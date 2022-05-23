@@ -27,7 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class register extends AppCompatActivity {
 
-    private EditText editTextName, editTextEmail, editTextPassword, editTextPhone,editTextcPassword;
+    private EditText editTextName, editTextEmail, editTextPassword, editTextPhone,editTextcPassword, editTextfullName;
     public TextView UserRegisterBtn;
     private ProgressBar progressBar;
 
@@ -41,10 +41,12 @@ public class register extends AppCompatActivity {
         actionBar.hide();
         getWindow().setStatusBarColor(ContextCompat.getColor(register.this,R.color.lightblue));
         editTextName = findViewById(R.id.dep_name);
+        editTextfullName = findViewById(R.id.input_name);
         editTextEmail = findViewById(R.id.input_email);
         editTextPassword = findViewById(R.id.input_password);
         editTextcPassword= findViewById(R.id.reinput_password);
         UserRegisterBtn= findViewById(R.id.continue_signup);
+
 //        editTextPhone = findViewById(R.id.edit_text_phone);
         progressBar = findViewById(R.id.progressbar);
         progressBar.setVisibility(View.GONE);
@@ -92,6 +94,7 @@ public class register extends AppCompatActivity {
     private void registerUser() {
         final String name = editTextName.getText().toString().trim();
         final String email = editTextEmail.getText().toString();
+        final String fname = editTextfullName.getText().toString();
         String password = editTextPassword.getText().toString().trim();
         String cpassword = editTextcPassword.getText().toString().trim();
         // final String phone = editTextPhone.getText().toString().trim();
@@ -151,7 +154,7 @@ public class register extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if (task.isSuccessful()) {
-                            final User user = new User(name, email);
+                            final User user = new User(name, email,fname);
                             //.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             //important to retrive data and send data based on user email
                             FirebaseUser usernameinfirebase = mAuth.getCurrentUser();

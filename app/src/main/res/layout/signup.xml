@@ -70,10 +70,10 @@ android:gravity="center_vertical">
             android:id="@+id/input_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Full Name"
-            android:textSize="16sp"
             android:layout_marginStart="10dp"
-            android:inputType="textPersonName" />
+            android:hint="Full Name"
+            android:inputType="textPersonName"
+            android:textSize="16sp" />
     </LinearLayout>
 
     <LinearLayout

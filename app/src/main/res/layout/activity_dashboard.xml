@@ -45,7 +45,7 @@
         android:src="@drawable/man" />
 
     <TextView
-        android:id="@+id/username"
+        android:id="@+id/fullname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="12dp"
@@ -59,10 +59,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/username"
+        android:layout_below="@+id/fullname"
         android:layout_centerVertical="true"
         android:layout_marginLeft="12dp"
         android:layout_marginTop="8dp"
+        android:id="@+id/ndep"
         android:layout_toRightOf="@+id/profile"
         android:fontFamily="@font/roboto_regular"
         android:text="Service Departement"
