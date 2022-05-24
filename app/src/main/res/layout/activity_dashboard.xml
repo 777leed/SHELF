@@ -52,21 +52,21 @@
         android:layout_marginTop="18dp"
         android:layout_toRightOf="@+id/profile"
         android:fontFamily="@font/roboto_regular"
-        android:text="Adnane Aglmous"
+        android:text=""
         android:textColor="#ffff"
         android:textSize="22dp" />
 
     <TextView
+        android:id="@+id/ndep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/fullname"
         android:layout_centerVertical="true"
         android:layout_marginLeft="12dp"
         android:layout_marginTop="8dp"
-        android:id="@+id/ndep"
         android:layout_toRightOf="@+id/profile"
         android:fontFamily="@font/roboto_regular"
-        android:text="Service Departement"
+        android:text=""
         android:textColor="#ffff"
         android:textSize="16dp" />
 
