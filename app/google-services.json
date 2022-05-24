@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "931954821794",
+    "firebase_url": "https://shelf-c07da-default-rtdb.firebaseio.com",
+    "project_id": "shelf-c07da",
+    "storage_bucket": "shelf-c07da.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:931954821794:android:a66de0fca2841e97de25fb",
+        "android_client_info": {
+          "package_name": "com.example.stockio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "931954821794-chggd1p0j0irtq4df6trtlj9lpkuqqbd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEdZbV6cTB2vbfmKzwcy0VDAC1896xs8g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "931954821794-chggd1p0j0irtq4df6trtlj9lpkuqqbd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
