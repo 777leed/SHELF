@@ -100,6 +100,7 @@
       android:weightSum="2">
 
     <LinearLayout
+        android:id="@+id/bg"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_weight="1"
@@ -107,6 +108,7 @@
         android:padding="18dp">
 
       <ImageView
+          android:id="@+id/add"
           android:layout_width="25dp"
           android:layout_height="25dp"
           android:layout_gravity="center"
@@ -115,6 +117,7 @@
       </ImageView>
 
       <TextView
+          android:id="@+id/addT"
           android:layout_width="wrap_content"
           android:layout_height="56dp"
           android:layout_gravity="center"

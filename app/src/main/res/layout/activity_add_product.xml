@@ -4,10 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical"
-    tools:context=".register">
-
+    tools:context=".addProduct"
+    android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,6 +13,7 @@
         android:layout_marginStart="10dp">
 
         <ImageView
+            android:id="@+id/btn_back"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:padding="7dp"
@@ -29,12 +28,11 @@
         android:layout_marginStart="40dp"
         android:layout_marginBottom="10dp"
         android:gravity="start"
-        android:text="Sign Up"
+        android:text="Add Product"
         android:textColor="#3c4b5d"
         android:textSize="24sp" />
-
     <LinearLayout
-        android:id="@+id/email"
+        android:id="@+id/idProduct"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="15dp"
@@ -44,95 +42,10 @@
         android:gravity="center_vertical">
 
         <EditText
-            android:id="@+id/input_email"
+            android:id="@+id/product"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
-            android:textSize="16sp"
-            android:layout_marginStart="10dp"
-            android:inputType="textEmailAddress" />
-
-    </LinearLayout>
-
-
-
-    <LinearLayout
-android:id="@+id/name"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:paddingTop="15dp"
-android:layout_marginTop="10dp"
-android:layout_marginStart="40dp"
-android:layout_marginEnd="40dp"
-android:gravity="center_vertical">
-
-        <EditText
-            android:id="@+id/input_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:hint="Full Name"
-            android:inputType="textPersonName"
-            android:textSize="16sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        android:gravity="center_vertical">
-
-        <EditText
-            android:id="@+id/input_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:textSize="16sp"
-            android:layout_marginStart="10dp"
-            android:inputType="textPassword" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/reenterpass"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        android:gravity="center_vertical">
-
-        <EditText
-            android:id="@+id/reinput_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Confirm Password"
-            android:textSize="16sp"
-            android:layout_marginStart="10dp"
-            android:inputType="textPassword" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/Dep"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        android:gravity="center_vertical">
-
-        <EditText
-            android:id="@+id/dep_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Departement Name"
+            android:hint="ID Product"
             android:textSize="16sp"
             android:layout_marginStart="10dp"
             android:inputType="text" />
@@ -140,6 +53,68 @@ android:gravity="center_vertical">
     </LinearLayout>
 
 
+
+    <LinearLayout
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/input_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:hint="Product Name"
+            android:inputType="text"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/input_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Price"
+            android:textSize="16sp"
+            android:layout_marginStart="10dp"
+            android:inputType="numberDecimal" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/qte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/reinput_qte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Quantity"
+            android:textSize="16sp"
+            android:layout_marginStart="10dp"
+            android:inputType="number" />
+
+    </LinearLayout>
 
 
     <LinearLayout
@@ -164,7 +139,7 @@ android:gravity="center_vertical">
 
 
     <TextView
-        android:id="@+id/continue_signup"
+        android:id="@+id/btn_add_product"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
@@ -175,28 +150,8 @@ android:gravity="center_vertical">
         android:textStyle="bold"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
-        android:text="CONTINUE"
+        android:text="ADD PRODUCT"
         android:textColor="@color/white"
         android:textSize="17sp" />
-
-    <ProgressBar
-        android:id="@+id/progressbar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-     android:layout_gravity="center"/>
-
-    <ImageView
-        android:layout_width="302dp"
-        android:layout_height="215dp"
-        android:layout_marginBottom="53dp"
-        android:layout_marginLeft="130dp"
-        android:foregroundGravity="center"
-        android:src="@drawable/storage1" />
-
-    <TextView
-        android:id="@+id/tvStatus"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
 
 </LinearLayout>
