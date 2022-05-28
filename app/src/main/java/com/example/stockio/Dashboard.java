@@ -7,9 +7,14 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.icu.text.CaseMap;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,7 +38,30 @@ public class Dashboard extends AppCompatActivity {
         actionBar.hide();
         getWindow().setStatusBarColor(ContextCompat.getColor(Dashboard.this,R.color.lightblue));
         getUserInfo();
-
+//        ImageView imgview = (ImageView) findViewById(R.id.add);
+//        imgview.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent myIntent = new Intent(Dashboard.this, addProduct.class);
+//                startActivity(myIntent);
+//            }
+//        });
+//        TextView txtview = (TextView) findViewById(R.id.addT);
+//        txtview.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent myIntent = new Intent(Dashboard.this, addProduct.class);
+//                startActivity(myIntent);
+//            }
+//        });
+        LinearLayout bg = (LinearLayout) findViewById(R.id.bg);
+        bg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(Dashboard.this, addProduct.class);
+                startActivity(myIntent);
+            }
+        });
     }
     public void getUserInfo(){
 
