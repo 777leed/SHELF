@@ -1,7 +1,9 @@
 package com.example.stockio;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class allProducts extends AppCompatActivity {
-
+    public FirebaseAuth mAuth;
     RecyclerView recyclerView;
     DatabaseReference database;
     MyAdapter myAdapter;
@@ -29,11 +31,17 @@ public class allProducts extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_products);
-
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.hide();
+        getWindow().setStatusBarColor(ContextCompat.getColor(allProducts.this,R.color.lightblue));
         recyclerView = findViewById(R.id.recycl);
-        final FirebaseUser users = firebaseAuth.getCurrentUser();
-        String finaluser=users.getEmail();
-        String resultemail = finaluser.replace(".","");
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser usernameinfirebase = mAuth.getCurrentUser();
+        assert usernameinfirebase != null;
+        String UserID=usernameinfirebase.getEmail();
+        assert UserID != null;
+        String resultemail = UserID.replace(".","");
         database = FirebaseDatabase.getInstance().getReference("Users").child(resultemail).child("Product");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
