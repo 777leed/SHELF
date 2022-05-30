@@ -24,24 +24,29 @@ import com.google.firebase.database.FirebaseDatabase;
 
 
 public class addProduct extends AppCompatActivity {
-    private EditText editTextId, editTextName, editTextPrice, editTextQte;
+    private EditText editTextId, editTextName, editTextPrice, editTextQte,pcategory;
     public TextView addProBtn;
+    DatabaseReference databaseReference,databaseReferencecat;
+    private FirebaseAuth firebaseAuth;
+
 //    private FirebaseAuth mAuth;
-    DatabaseReference productDbRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+        firebaseAuth = FirebaseAuth.getInstance();
         getWindow().setStatusBarColor(ContextCompat.getColor(addProduct.this,R.color.lightblue));
         editTextId = findViewById(R.id.product);
         editTextName = findViewById(R.id.input_name);
         editTextPrice = findViewById(R.id.input_price);
         editTextQte = findViewById(R.id.reinput_qte);
         addProBtn = findViewById(R.id.btn_add_product);
+        pcategory = findViewById(R.id.input_category);
 //        mAuth = FirebaseAuth.getInstance();
-        productDbRef=FirebaseDatabase.getInstance().getReference().child("Product");
+        databaseReferencecat = FirebaseDatabase.getInstance().getReference("Users");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
 
         addProBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +85,10 @@ public class addProduct extends AppCompatActivity {
         String Pname = editTextName.getText().toString();
         String price = editTextPrice.getText().toString();
         String qte = editTextQte.getText().toString().trim();
+        String cat = pcategory.getText().toString().trim();
+        final FirebaseUser users = firebaseAuth.getCurrentUser();
+        String finaluser=users.getEmail();
+        String resultemail = finaluser.replace(".","");
         // final String phone = editTextPhone.getText().toString().trim();
         if (id.isEmpty()) {
             editTextId.setError("It's empty");
@@ -91,9 +100,6 @@ public class addProduct extends AppCompatActivity {
             editTextName.requestFocus();
             return;
         }
-
-
-
         if (price.isEmpty()) {
             editTextPrice.setError("Its empty");
             editTextPrice.requestFocus();
@@ -104,6 +110,25 @@ public class addProduct extends AppCompatActivity {
             editTextQte.requestFocus();
             return;
         }
+
+        Product Product = new Product(id,Pname,price,qte,cat);
+        databaseReference.child(resultemail).child("Product").setValue(Product);
+        databaseReferencecat.child(resultemail).child("ItemByCategory").child(cat).setValue(Product);
+        editTextName.setText("");
+        editTextId.setText("");
+        editTextPrice.setText("");
+        editTextQte.setText("");
+        pcategory.setText("");
+        Toast.makeText(addProduct.this,Pname+" Added",Toast.LENGTH_SHORT).show();
+    }
+
+
+
+
+
+
+
+
 //        Product product = new Product(id,Pname,price,qte);
 //        productDbRef.push().setValue(product);
 //        Toast.makeText(addProduct.this, "Data Inserted", Toast.LENGTH_LONG).show();
@@ -130,4 +155,3 @@ public class addProduct extends AppCompatActivity {
 
  //       });
     }
-}
