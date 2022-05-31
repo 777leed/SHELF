@@ -257,6 +257,7 @@
   </RelativeLayout>
 
   <RelativeLayout
+      android:id="@+id/rl_add_quantity"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginTop="34dp">
@@ -275,7 +276,7 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="16dp"
         android:layout_toRightOf="@id/icon_ser"
-        android:text="Settings"
+        android:text="Add Quantity"
         android:textColor="#202020"
         android:textSize="20dp" />
 

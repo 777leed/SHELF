@@ -26,7 +26,6 @@ public class DeleteProduct extends AppCompatActivity {
     private EditText editTextnom;
     public TextView delProBtn;
     DatabaseReference databaseReference;
-    Task<Void> ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
