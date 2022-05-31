@@ -112,8 +112,8 @@ public class addProduct extends AppCompatActivity {
         }
 
         Product Product = new Product(id,Pname,price,qte,cat);
-        databaseReference.child(resultemail).child("Product").setValue(Product);
-        databaseReferencecat.child(resultemail).child("ItemByCategory").child(cat).setValue(Product);
+        databaseReference.child(resultemail).child("Product").child(Pname).setValue(Product);
+//        databaseReferencecat.child(resultemail).child("ItemByCategory").child(cat).setValue(Product);
         editTextName.setText("");
         editTextId.setText("");
         editTextPrice.setText("");

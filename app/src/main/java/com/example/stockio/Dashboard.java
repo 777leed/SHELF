@@ -72,10 +72,18 @@ public class Dashboard extends AppCompatActivity {
 //            }
 //        });
         LinearLayout bg = (LinearLayout) findViewById(R.id.bg);
+        LinearLayout dp = (LinearLayout) findViewById(R.id.deldash);
         bg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent(Dashboard.this, addProduct.class);
+                startActivity(myIntent);
+            }
+        });
+        dp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(Dashboard.this,DeleteProduct.class);
                 startActivity(myIntent);
             }
         });

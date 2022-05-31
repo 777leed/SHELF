@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Stockio">
         <activity
+            android:name=".DeleteProduct"
+            android:exported="false" />
+        <activity
             android:name=".allProducts"
             android:exported="false" />
         <activity

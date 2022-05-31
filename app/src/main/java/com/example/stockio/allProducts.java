@@ -1,5 +1,7 @@
 package com.example.stockio;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -54,9 +57,16 @@ public class allProducts extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot ds : snapshot.getChildren()){
 
-                    Product product = dataSnapshot.getValue(Product.class);
+//                    Product product = ds.getValue(Product.class);
+//                    assert product != null;
+                    Product product = new Product(
+                            ds.child("idP").getValue(String.class),
+                            ds.child("nameP").getValue(String.class),
+                            ds.child("price").getValue(String.class),
+                            ds.child("quantity").getValue(String.class),
+                            ds.child("category").getValue(String.class));
                     list.add(product);
 
 
@@ -67,7 +77,7 @@ public class allProducts extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
 

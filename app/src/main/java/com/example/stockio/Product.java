@@ -18,6 +18,7 @@ public class Product {
 
     }
 
+
     public String getIdP() {
         return idP;
     }
