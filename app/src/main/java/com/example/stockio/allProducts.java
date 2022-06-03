@@ -38,6 +38,7 @@ public class allProducts extends AppCompatActivity {
         assert actionBar != null;
         actionBar.hide();
         getWindow().setStatusBarColor(ContextCompat.getColor(allProducts.this,R.color.lightblue));
+        recyclerView.setNestedScrollingEnabled(false);
         recyclerView = findViewById(R.id.recycl);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser usernameinfirebase = mAuth.getCurrentUser();

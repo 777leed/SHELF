@@ -83,8 +83,5 @@ public class addQuantity extends AppCompatActivity {
 
         }
     }
-//    public void addQtev2(String e,String n,Product product){
-//
-//        databaseReference.child(e).child("Product").child(n).updateChildren(product);
-//    }
+
 }
