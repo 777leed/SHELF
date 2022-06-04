@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -26,8 +27,8 @@ public class allProducts extends AppCompatActivity {
     public FirebaseAuth mAuth;
     RecyclerView recyclerView;
     DatabaseReference database;
-    MyAdapter myAdapter;
-    ArrayList<Product> list;
+    ArrayList<Product> list= new ArrayList<>();
+    MyAdapter myAdapter= new MyAdapter(this,list);
     private FirebaseAuth firebaseAuth;
 
     @Override
@@ -38,8 +39,8 @@ public class allProducts extends AppCompatActivity {
         assert actionBar != null;
         actionBar.hide();
         getWindow().setStatusBarColor(ContextCompat.getColor(allProducts.this,R.color.lightblue));
-        recyclerView.setNestedScrollingEnabled(false);
         recyclerView = findViewById(R.id.recycl);
+        recyclerView.setNestedScrollingEnabled(false);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser usernameinfirebase = mAuth.getCurrentUser();
         assert usernameinfirebase != null;
@@ -50,8 +51,7 @@ public class allProducts extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        list = new ArrayList<>();
-        myAdapter = new MyAdapter(this,list);
+
         recyclerView.setAdapter(myAdapter);
 
         database.addValueEventListener(new ValueEventListener() {
@@ -68,8 +68,8 @@ public class allProducts extends AppCompatActivity {
                             ds.child("price").getValue(String.class),
                             ds.child("quantity").getValue(String.class),
                             ds.child("category").getValue(String.class));
-                    list.add(product);
 
+                    list.add(product);
 
                 }
                 myAdapter.notifyDataSetChanged();
@@ -83,5 +83,9 @@ public class allProducts extends AppCompatActivity {
         });
 
 
+
+
     }
+
+
 }

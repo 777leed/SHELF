@@ -186,7 +186,6 @@
                             android:padding="10dp"
                             android:src="@drawable/ic_call_24dp" />
                         <ViewSwitcher
-                            xmlns:android="http://schemas.android.com/apk/res/android"
                             android:id="@+id/my_switcher"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" >
@@ -220,21 +219,20 @@
                             android:padding="10dp"
                             android:src="@drawable/ic_email_24dp" />
                         <ViewSwitcher
-                            xmlns:android="http://schemas.android.com/apk/res/android"
                             android:id="@+id/secondswitcher"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" >
                         <TextView
+                            android:id="@+id/premail"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/premail"
                             android:layout_marginLeft="20dp"
                             android:fontFamily="@font/roboto_regular"
                             android:text="user@domain.com"
                             android:textColor="#808080"
                             android:textSize="15sp" />
                             <EditText
-                                android:id="@+id/hidden_edit_location"
+                                android:id="@+id/hidden_edit_email"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="Telephone" />
@@ -254,7 +252,6 @@
                             android:padding="10dp"
                             android:src="@drawable/ic_location_24dp" />
                         <ViewSwitcher
-                            xmlns:android="http://schemas.android.com/apk/res/android"
                             android:id="@+id/thirdswitcher"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" >
@@ -268,7 +265,7 @@
                             android:textColor="#808080"
                             android:textSize="15sp" />
                             <EditText
-                                android:id="@+id/hidden_edit_email"
+                                android:id="@+id/hidden_edit_location"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="Telephone" />
@@ -278,7 +275,23 @@
                 </LinearLayout>
             </LinearLayout>
 
-
+            <TextView
+                android:id="@+id/editbtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/circular_blue_solid"
+                android:gravity="center"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:text="Submit"
+                android:textColor="@color/white"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:textSize="17sp"
+                android:visibility="invisible"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
         </LinearLayout>
 
 
