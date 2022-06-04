@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Stockio">
         <activity
+            android:name=".AddSales"
+            android:exported="false" />
+        <activity
+            android:name=".Stats"
+            android:exported="false" />
+        <activity
             android:name=".addQuantity"
             android:exported="false" />
         <activity

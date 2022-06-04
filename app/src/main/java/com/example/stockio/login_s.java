@@ -36,6 +36,7 @@ public class login_s extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.hide();
         getWindow().setStatusBarColor(ContextCompat.getColor(login_s.this,R.color.lightblue));
 

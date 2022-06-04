@@ -3,18 +3,20 @@ package com.example.stockio;
 import android.widget.EditText;
 
 public class Product {
-    public String idP, nameP,price,quantity,category;
+    public String idP, nameP,price,quantity,category,sales;
+
 
 //    public Product(){
 //
 //    }
 
-    public Product(String idP, String nameP, String price, String quantity, String category) {
+    public Product(String idP, String nameP, String price, String quantity, String category, String sales) {
         this.idP = idP;
         this.nameP = nameP;
         this.price= price;
         this.quantity= quantity;
         this.category= category;
+        this.sales= sales;
 
     }
 

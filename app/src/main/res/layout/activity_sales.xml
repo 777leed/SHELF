@@ -30,7 +30,7 @@
         android:layout_marginTop="28dp"
         android:gravity="start"
         android:layout_marginStart="40dp"
-        android:text="Add more ?"
+        android:text="Sales"
         android:textColor="#3c4b5d"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +52,7 @@
         app:layout_constraintVertical_bias="0.322">
 
         <EditText
-            android:id="@+id/addqteProduct_name"
+            android:id="@+id/addsalesProduct_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -77,11 +77,11 @@
         app:layout_constraintVertical_bias="0.459">
 
         <EditText
-            android:id="@+id/editText_add_qte"
+            android:id="@+id/editText_add_sales"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:hint="How much you want to add ?"
+            android:hint="How many sales you made ?"
             android:inputType="numberDecimal"
             android:textSize="16sp" />
 
@@ -89,7 +89,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/qteproduct"
+        android:id="@+id/salesproduct"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/circular_blue_solid"
@@ -98,7 +98,7 @@
         android:paddingBottom="15dp"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
-        android:text="Add Quantity"
+        android:text="Add Sales"
         android:textColor="@color/white"
         android:textSize="17sp"
         android:textStyle="bold"
@@ -108,14 +108,16 @@
         tools:layout_editor_absoluteX="40dp" />
 
     <ImageView
-        android:layout_width="167dp"
-        android:layout_height="161dp"
+        android:layout_width="119dp"
+        android:layout_height="127dp"
         android:layout_gravity="center"
-        android:src="@drawable/overflow"
+        android:layout_marginRight="100dp"
+        android:layout_marginBottom="148dp"
+        android:src="@drawable/sales"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/qteproduct"
-        android:layout_marginRight="100dp"/>
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

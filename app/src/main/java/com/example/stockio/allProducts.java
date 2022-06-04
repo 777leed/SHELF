@@ -40,7 +40,6 @@ public class allProducts extends AppCompatActivity {
         actionBar.hide();
         getWindow().setStatusBarColor(ContextCompat.getColor(allProducts.this,R.color.lightblue));
         recyclerView = findViewById(R.id.recycl);
-        recyclerView.setNestedScrollingEnabled(false);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser usernameinfirebase = mAuth.getCurrentUser();
         assert usernameinfirebase != null;
@@ -67,7 +66,8 @@ public class allProducts extends AppCompatActivity {
                             ds.child("nameP").getValue(String.class),
                             ds.child("price").getValue(String.class),
                             ds.child("quantity").getValue(String.class),
-                            ds.child("category").getValue(String.class));
+                            ds.child("category").getValue(String.class),
+                            ds.child("sales").getValue(String.class));
 
                     list.add(product);
 

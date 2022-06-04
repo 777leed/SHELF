@@ -22,10 +22,18 @@ public class Dashboard extends AppCompatActivity {
         getWindow().setStatusBarColor(ContextCompat.getColor(Dashboard.this,R.color.lightblue));
         RelativeLayout pr =(RelativeLayout)findViewById(R.id.db_profile);
         RelativeLayout vp =(RelativeLayout)findViewById(R.id.view_products);
+        RelativeLayout sd =(RelativeLayout)findViewById(R.id.salesdash);
         pr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent(Dashboard.this, profil.class);
+                startActivity(myIntent);
+            }
+        });
+        sd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(Dashboard.this, AddSales.class);
                 startActivity(myIntent);
             }
         });

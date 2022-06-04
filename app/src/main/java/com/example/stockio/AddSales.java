@@ -1,14 +1,14 @@
 package com.example.stockio;
 
-import static android.content.ContentValues.TAG;
-
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import java.time.LocalDateTime;
 
+import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -21,51 +21,54 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-public class addQuantity extends AppCompatActivity {
+import java.util.Date;
+import java.util.Objects;
+
+public class AddSales extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private EditText editTextnom;
-    private EditText editTextqte;
-    public TextView add;
+    private EditText editTextsold;
+    public TextView sold;
     DatabaseReference databaseReference;
+    public static int idsale= 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_quantity);
+        setContentView(R.layout.activity_sales);
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.hide();
-        getWindow().setStatusBarColor(ContextCompat.getColor(addQuantity.this,R.color.lightblue));
+        getWindow().setStatusBarColor(ContextCompat.getColor(AddSales.this,R.color.lightblue));
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
-        editTextnom = findViewById(R.id.addqteProduct_name);
-        editTextqte = findViewById(R.id.editText_add_qte);
-        add = findViewById(R.id.qteproduct);
+        editTextnom = findViewById(R.id.addsalesProduct_name);
+        editTextsold = findViewById(R.id.editText_add_sales);
+        sold = findViewById(R.id.salesproduct);
 
-        add.setOnClickListener(new View.OnClickListener() {
+        sold.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addQtev1();
-                Toast.makeText(addQuantity.this,"Clicked",Toast.LENGTH_SHORT).show();
+                addSales();
+                Toast.makeText(AddSales.this,"Clicked",Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void addQtev1() {
+    private void addSales() {
         String namebased = editTextnom.getText().toString();
-        int qtebased = Integer.parseInt(editTextqte.getText().toString());
+        int soldbased = Integer.parseInt(editTextsold.getText().toString());
 
         final FirebaseUser users = firebaseAuth.getCurrentUser();
         String finaluser=users.getEmail();
         String resultemail = finaluser.replace(".","");
-        if(!TextUtils.isEmpty(namebased)&&qtebased>0){
+        if(!TextUtils.isEmpty(namebased)&&soldbased>0){
 //
-           DatabaseReference myRef = databaseReference.child(resultemail).child("Product").child(namebased);
+            DatabaseReference myRef = databaseReference.child(resultemail).child("Product").child(namebased);
             myRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
                 public void onComplete(@NonNull Task<DataSnapshot> task) {
                     if (!task.isSuccessful()) {
@@ -77,12 +80,22 @@ public class addQuantity extends AppCompatActivity {
                                 task.getResult().child("nameP").getValue(String.class),
                                 task.getResult().child("price").getValue(String.class),
                                 task.getResult().child("quantity").getValue(String.class),
-                                task.getResult().child("category").getValue(String.class),"0");
-
+                                task.getResult().child("category").getValue(String.class),
+                                "0");
                         int retrievedquantity = Integer.parseInt(product.getQuantity());
-                        product.quantity= Integer.toString(retrievedquantity + qtebased);
-                        databaseReference.child(resultemail).child("Product").child(namebased).setValue(product);
-                        Log.d("firebase", String.valueOf(task.getResult().getValue()));
+                        if (retrievedquantity >= soldbased){
+                            product.quantity= Integer.toString(retrievedquantity - soldbased);
+                            product.sales= Integer.toString(Integer.parseInt(Objects.requireNonNull(task.getResult().child("sales").getValue(String.class)))  + soldbased) ;
+                            databaseReference.child(resultemail).child("Product").child(namebased).setValue(product);
+                            Sales s = new Sales(idsale++,product,java.time.LocalDateTime.now());
+                            databaseReference.child(resultemail).child("sales").child(namebased).setValue(s);
+                            Log.d("Done", String.valueOf(task.getResult().getValue()));
+                        }
+                        else{
+
+                            Log.d("Error", String.valueOf(task.getResult().getValue()));
+                        }
+
                     }
                 }
             });
@@ -90,5 +103,4 @@ public class addQuantity extends AppCompatActivity {
 
         }
     }
-
 }
