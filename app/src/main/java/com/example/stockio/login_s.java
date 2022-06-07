@@ -99,7 +99,7 @@ public class login_s extends AppCompatActivity {
 
     public void validate(String userEmail, String userPassword){
 
-        processDialog.setMessage("................Please Wait.............");
+        processDialog.setMessage("Please Wait");
         processDialog.show();
 
         auth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {

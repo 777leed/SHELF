@@ -2,6 +2,8 @@ package com.example.stockio;
 
 import android.widget.EditText;
 
+import java.util.Locale;
+
 public class Product {
     public String idP, nameP,price,quantity,category,sales;
 
@@ -11,6 +13,7 @@ public class Product {
 //    }
 
     public Product(String idP, String nameP, String price, String quantity, String category, String sales) {
+
         this.idP = idP;
         this.nameP = nameP;
         this.price= price;

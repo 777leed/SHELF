@@ -24,13 +24,17 @@ import com.google.firebase.auth.FirebaseUser;
 
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.FirebaseDatabase;
+import com.sambhav2358.tinydb.TinyDB;
+import com.sambhav2358.tinydb.TinyDefaultDB;
+
+import java.util.ArrayList;
 
 public class register extends AppCompatActivity {
 
     private EditText editTextName, editTextEmail, editTextPassword, editTextPhone,editTextcPassword, editTextfullName;
     public TextView UserRegisterBtn;
     private ProgressBar progressBar;
-
+    ArrayList<datastat> datastats = new ArrayList<>();
     private FirebaseAuth mAuth;
 
     @Override
@@ -154,6 +158,10 @@ public class register extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if (task.isSuccessful()) {
+                            TinyDefaultDB tinyDB; //in your class
+
+                            tinyDB = TinyDB.getInstance().getDefaultDatabase(register.this); // the context does not need be activity context
+                            tinyDB.putList("data",datastats); // and a lot more formats to save
                             final User user = new User(name, email,fname);
                             //.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             //important to retrive data and send data based on user email

@@ -23,10 +23,18 @@ public class Dashboard extends AppCompatActivity {
         RelativeLayout pr =(RelativeLayout)findViewById(R.id.db_profile);
         RelativeLayout vp =(RelativeLayout)findViewById(R.id.view_products);
         RelativeLayout sd =(RelativeLayout)findViewById(R.id.salesdash);
+        RelativeLayout st =(RelativeLayout)findViewById(R.id.St);
         pr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent(Dashboard.this, profil.class);
+                startActivity(myIntent);
+            }
+        });
+        st.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(Dashboard.this, Stats.class);
                 startActivity(myIntent);
             }
         });

@@ -20,8 +20,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.sambhav2358.tinydb.TinyDB;
+import com.sambhav2358.tinydb.TinyDefaultDB;
 
 import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 
 public class Tools extends AppCompatActivity {
     private static final String TAG ="In case" ;
@@ -38,6 +42,7 @@ public class Tools extends AppCompatActivity {
         String resultemail = finaluser.replace(".","");
         if(!TextUtils.isEmpty(namebased)){
             databaseReference.child(resultemail).child("Product").child(namebased).removeValue();
+
         }
         else
             Log.i(TAG, "Error In delete from database");
@@ -113,6 +118,16 @@ public class Tools extends AppCompatActivity {
         });
 
 
+    }
+
+    public String getemail(){
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser usernameinfirebase = mAuth.getCurrentUser();
+        assert usernameinfirebase != null;
+        String UserID=usernameinfirebase.getEmail();
+        assert UserID != null;
+
+        return UserID.replace(".","");
     }
 
 

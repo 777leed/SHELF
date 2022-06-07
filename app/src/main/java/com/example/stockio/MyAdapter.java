@@ -16,6 +16,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.sambhav2358.tinydb.TinyDB;
+import com.sambhav2358.tinydb.TinyDefaultDB;
+
 import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
@@ -84,9 +88,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                         t.deletefrmdatabase(product.getNameP());
                         Toast.makeText(context, "Product Is Deleted", Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
+                        TinyDefaultDB tinyDB;
+                        tinyDB = TinyDB.getInstance().getDefaultDatabase(context); // the context does not need be activity context
+//Save value
+                        ArrayList<datastat> datastats = new ArrayList<>();
+                        datastats=tinyDB.getList("data",null);
+                        datastats.remove(product);
+                        tinyDB.putList("data",datastats); // and a lot more formats to save
                         Intent myactivity = new Intent(context.getApplicationContext(), Dashboard.class);
                         myactivity.addFlags(FLAG_ACTIVITY_NEW_TASK);
                         context.getApplicationContext().startActivity(myactivity);
+
                     }
                 });
 
