@@ -100,14 +100,15 @@ public class Tools extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 Additional value = dataSnapshot.getValue((Additional.class));
-                assert value != null;
-
+            if (value != null){
                 String retrievedloc = value.loc.toUpperCase();
                 String retrievedtele =value.tel.toUpperCase() ;
                 l.setText(retrievedloc);
                 t.setText(retrievedtele);
-                    e.setText(UserID);
+                e.setText(UserID);
                 Log.d(TAG, "Value is: " + value);
+            }
+
             }
 
             @Override

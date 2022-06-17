@@ -58,6 +58,20 @@
                 android:src="@drawable/ic_notifications_white_24dp" />
 
         </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:id="@+id/shutdown"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:padding="6dp"
+                android:src="@drawable/shutdown" />
+
+        </RelativeLayout>
+
 
     </LinearLayout>
 

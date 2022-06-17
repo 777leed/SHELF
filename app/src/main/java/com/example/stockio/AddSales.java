@@ -40,6 +40,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+
 public class AddSales extends AppCompatActivity {
    public FirebaseAuth firebaseAuth;
     private EditText editTextnom;
@@ -97,24 +98,33 @@ public class AddSales extends AppCompatActivity {
                                 task.getResult().child("Product").child(namebased).child("category").getValue(String.class),
                                 "0");
                         int retrievedquantity = Integer.parseInt(product.getQuantity());
-
+                        if (retrievedquantity < 3){
+                            sendWarning(product.nameP);
+                        }
 
                         if (retrievedquantity >= soldbased){
                             TinyDefaultDB tinyDB;
                             tinyDB = TinyDB.getInstance().getDefaultDatabase(AddSales.this);
                             datastats=tinyDB.getList("data",null);
-                            if (!datastats.isEmpty()){
-                                for( int i = 0; i < datastats.size(); i++ )
-                                {
-                                    datastat lValue = datastats.get( i );
-                                    if(lValue.name.equals(product.nameP))
-                                    {
-                                        datastats.remove(lValue);
-                                        i--;
+                            try {
+                                if (!datastats.isEmpty()) {
+                                    for (int i = 0; i < datastats.size(); i++) {
+                                        datastat lValue = datastats.get(i);
+                                        if (lValue.name.equals(product.nameP)) {
+                                            datastats.remove(lValue);
+                                            i--;
+                                        }
                                     }
-                                }
-                            }
 
+                                }
+                            } catch (Exception e) {
+                                ArrayList<datastat> datastats = new ArrayList<>();
+                                tinyDB.putList("data",datastats);
+
+                            }
+                            if (datastats.isEmpty()){
+                                ArrayList<datastat> datastats = new ArrayList<>();
+                            }
                             product.quantity= Integer.toString(retrievedquantity - soldbased);
                             int newvalue =Integer.parseInt(Objects.requireNonNull(task.getResult().child("Product").child(namebased).child("sales").getValue(String.class)))+ + soldbased;
                             product.sales= Integer.toString(newvalue) ;
@@ -145,6 +155,7 @@ public class AddSales extends AppCompatActivity {
 //                                ioe.printStackTrace();
 //                                Log.d("Error de serialization", String.valueOf(task.getResult().getValue()));
 //                            }
+
                         }
                         else{
 
@@ -159,6 +170,13 @@ public class AddSales extends AppCompatActivity {
 
 
         }
+    }
+
+    private void sendWarning(String name) {
+        JavaMailAPI javaMailAPI = new JavaMailAPI(this,"khalidkoukou70@gmail.com","Warning: You might need to check your storage","You are running out of" + name);
+        javaMailAPI.execute();
+        Log.d("Error 789", "What the dog doing");
+
     }
 
 //    public void getStats(List<datastat> data){

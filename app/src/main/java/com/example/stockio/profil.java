@@ -9,11 +9,13 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
@@ -41,14 +43,26 @@ public class profil extends AppCompatActivity {
         getWindow().setStatusBarColor(ContextCompat.getColor(profil.this,R.color.lightblue));
         getUserInfo();
         TextView edit = (TextView) findViewById(R.id.edit);
+        ImageView s = (ImageView) findViewById(R.id.shutdown);
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
         Switcher();
             }
         });
+        s.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signout();
+            }
+        });
 
 
+    }
+
+
+    public void signout(){
+        FirebaseAuth.getInstance().signOut();
     }
     public void getUserInfo(){
         final TextView fullNamep = (TextView)findViewById(R.id.prname);

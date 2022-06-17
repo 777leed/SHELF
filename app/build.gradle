@@ -54,5 +54,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
     implementation 'com.github.sambhav2358:TinyDB:2.0.1'
+    implementation files('libs/activation.jar')
+    implementation files('libs/additionnal')
+    implementation files('libs/mail.jar')
 
 }
