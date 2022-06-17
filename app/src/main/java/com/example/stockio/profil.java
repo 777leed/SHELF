@@ -54,6 +54,8 @@ public class profil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 signout();
+                startActivity(new Intent(profil.this,login_s.class));
+                finishAffinity();
             }
         });
 
@@ -63,6 +65,7 @@ public class profil extends AppCompatActivity {
 
     public void signout(){
         FirebaseAuth.getInstance().signOut();
+
     }
     public void getUserInfo(){
         final TextView fullNamep = (TextView)findViewById(R.id.prname);
