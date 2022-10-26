@@ -10,4 +10,5 @@ Shelf is a store/storage management app to track your storage properly
 
 # Preview
 
-![Screenshot 2022-10-18 092900](https://user-images.githubusercontent.com/86270022/196379230-24faab50-5252-4b76-9815-e1f26a2e4be5.png)
+Comming soon
+
